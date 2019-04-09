@@ -1,5 +1,4 @@
-import * as draw from "./modules/draw.js"
-
+// import * as draw from "./modules/draw.js"
 
 const socket = io();
 
@@ -16,6 +15,7 @@ socket.on("display msg", msg => {
   chatContainer.appendChild(newMsgEl)
 })
 
+
 function submitMsg(e) {
   e.preventDefault() // Prevent page refresh
 
@@ -28,3 +28,5 @@ function submitMsg(e) {
 }
 
 msgForm.addEventListener("submit", submitMsg);
+
+export default socket;
