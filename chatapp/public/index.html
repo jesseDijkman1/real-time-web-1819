@@ -8,50 +8,31 @@
   <title>Chat App</title>
 </head>
 <body>
-  <h1>Chat app</h1>
+  <div class="page-container">
+    <main id="game">
+      <canvas></canvas>
+      <footer class="game-options"></footer>
+    </main>
 
-  <main id="chat">
-    <header class="chat-display">
-      <canvas style="border:1px solid #000000;" class="chat-background"></canvas>
+    <aside id="chat">
+      <header class="player-info">
+        <h3 class="player-name">Player 1</h3>
+        <form class="player-info-form">
+          <input type="text">
+          <button type="submit">Save</button>
+        </form>
+      </header>
       <ul class="chat-messages"></ul>
-    </header>
-    <aside class="drawing-options">
-      <input id="start-btn" class="visuallyhidden" type="checkbox">
-      <label for="start-btn">Start</label>
-
-      <ul class="pen-tools">
-        <li class="tool pen-size">
-          <ul class="sizes">
-            <li class="tool-option current" data-size="60"></li>
-            <li class="tool-option" data-size="50"></li>
-            <li class="tool-option" data-size="40"></li>
-            <li class="tool-option" data-size="30"></li>
-            <li class="tool-option" data-size="20"></li>
-            <li class="tool-option" data-size="10"></li>
-          </ul>
-        </li>
-        <li class="tool pen-color">
-          <ul class="colors">
-            <li class="tool-option current" data-color="blue"></li>
-            <li class="tool-option" data-color="red"></li>
-            <li class="tool-option" data-color="yellow"></li>
-            <li class="tool-option" data-color="green"></li>
-            <li class="tool-option" data-color="purple"></li>
-            <li class="tool-option" data-color="white"></li>
-          </ul>
-        </li>
-      </ul>
-    </aside>
-    <footer class="chat-form">
-      <form>
-        <input type="text" id="msg-input">
+      <form class="chat-form">
+        <input type="text">
         <button type="submit">Send</button>
       </form>
-    </footer>
-  </main>
+    </aside>
+  </div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/main.js" type="module"></script>
-  <script src="/js/draw.js" type="module"></script>
+  <script src="/js/chat.js" type="module"></script>
+  <!-- <script src="/js/draw.js" type="module"></script> -->
 </body>
 </html>

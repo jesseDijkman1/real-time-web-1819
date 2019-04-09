@@ -21,28 +21,29 @@ app.use(express.static("public"))
 
 const socketsList = {};
 const pixelPositions = [];
+let count = 0;
+
+function addSocket(s) {
+  socketsList[s.id] = {};
+
+  const index = Object.keys(socketsList).indexOf(s.id);
+
+  socketsList[s.id].name = `Player ${index}`;
+}
 
 io.on("connection", socket => {
 
   // First add the socket to the socket list to keep track of them all
-  socketsList[socket.id] = {};
+  addSocket(socket)
 
-  socket.on("new msg", val => {
-    io.sockets.emit("display msg", val, socket.id)
-  })
+  console.log(socketsList)
+  socket.emit("set player name", socketsList[socket.id].name)
 
-  socket.on("get all drawings", () => {
-    socket.emit("all drawings", pixelPositions)
-  })
-
-  socket.on("drawing", data => {
-    pixelPositions.push(data);
-
-    io.sockets.emit("display drawing", data)
+  socket.on("update player name", newName => {
+    socketsList[socket.id].name = newName;
   })
 
   socket.on("disconnect", () => {
-    console.log("disconnected", socket.id)
     delete socketsList[socket.id]
   })
 });
