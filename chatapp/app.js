@@ -19,8 +19,20 @@ app.get("/", (req, res) => {
 
 app.use(express.static("public"))
 
-io.on('connection', function(socket){
-  console.log('a user connected');
+const socketsList = {};
+
+io.on("connection", socket => {
+
+  // First add the socket to the socket list to keep track of them all
+
+  socketsList[socket.id] = {};
+
+  console.log(socketsList)
+
+  socket.on("disconnect", () => {
+    console.log("disconnected", socket.id)
+    delete socketsList[socket.id]
+  })
 });
 
 server.listen(port, () => console.log(`Listening to port: ${port}`));

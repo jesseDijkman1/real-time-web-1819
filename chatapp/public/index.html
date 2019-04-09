@@ -9,7 +9,18 @@
 <body>
   <h1>Chat app</h1>
 
-  
+  <main id="chat">
+    <header class="chat-display">
+      <ul class="chat-messages"></ul>
+    </header>
+    <footer class="chat-form">
+      <form>
+        <input type="text" id="msg-input">
+        <button type="submit">Send</button>
+      </form>
+    </footer>
+  </main>
+
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/main.js"></script>
 </body>
