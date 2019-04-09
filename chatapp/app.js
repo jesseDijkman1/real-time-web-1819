@@ -24,10 +24,13 @@ const socketsList = {};
 io.on("connection", socket => {
 
   // First add the socket to the socket list to keep track of them all
-
   socketsList[socket.id] = {};
 
   console.log(socketsList)
+
+  socket.on("new msg", val => {
+    io.sockets.emit("display msg", val)
+  })
 
   socket.on("disconnect", () => {
     console.log("disconnected", socket.id)
