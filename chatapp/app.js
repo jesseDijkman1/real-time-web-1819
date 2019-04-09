@@ -1,3 +1,5 @@
+"use strict"
+
 const express = require("express");
 const http = require("http");
 const socketIO = require("socket.io");
@@ -9,11 +11,16 @@ const app = express();
 const server = http.Server(app);
 const io = socketIO(server);
 
-app.use(express.static("public"))
+
 
 app.get("/", (req, res) => {
-  console.log("hello world")
-  // res.sendFile("index.html")
+  res.sendFile(`${__dirname}/public/index.html`)
 })
+
+app.use(express.static("public"))
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
 
 server.listen(port, () => console.log(`Listening to port: ${port}`));
