@@ -20,6 +20,7 @@ app.get("/", (req, res) => {
 app.use(express.static("public"))
 
 const socketsList = {};
+const pixelPositions = [];
 
 io.on("connection", socket => {
 
@@ -32,7 +33,13 @@ io.on("connection", socket => {
     io.sockets.emit("display msg", val)
   })
 
+  socket.on("get all drawings", () => {
+    socket.emit("all drawings", pixelPositions)
+  })
+
   socket.on("drawing", data => {
+    pixelPositions.push(data);
+
     io.sockets.emit("display drawing", data)
   })
 

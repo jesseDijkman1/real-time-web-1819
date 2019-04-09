@@ -1,4 +1,140 @@
-.chat-display {
-  width: 80vw;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style-type: none;
+}
+
+#chat {
+  display: inline-block;
+  width: 100%;
   min-height: 300px;
+  position: relative;
+}
+
+.pen-tools {
+  border: solid 1px blue;
+}
+
+.pen-tools .tool {
+  border: solid 1px red;
+  min-height: 100px;
+}
+
+.preview {
+  width: 100px;
+  height: 100px;
+  border: solid 1px yellow;
+  background: grey;
+}
+
+.pen-color .colors,
+.pen-size .sizes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+[data-color], [data-size] {
+  height: 75px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+
+
+[data-size] {
+  /* display: flex; */
+  /* align-items: center; */
+  border: solid 1px black;
+}
+
+
+
+[data-size]::after,
+[data-color]::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: solid 1px black;
+}
+
+[data-size]::after {
+  background: black;
+  border-radius: 100%;
+}
+[data-size="60"]::after {
+  width: 60px;
+  height: 60px;
+}
+[data-size="50"]::after {
+  width: 50px;
+  height: 50px;
+}
+[data-size="40"]::after {
+  width: 40px;
+  height: 40px;
+}
+[data-size="30"]::after {
+  width: 30px;
+  height: 30px;
+}
+[data-size="20"]::after {
+  width: 20px;
+  height: 20px;
+}
+[data-size="10"]::after {
+  width: 10px;
+  height: 10px;
+}
+
+[data-color="blue"]::after {
+  background: blue;
+
+}
+[data-color="red"]::after {
+  background: red
+}
+[data-color="yellow"]::after {
+  background: yellow
+}
+[data-color="green"]::after {
+  background: green
+}
+[data-color="purple"]::after {
+  background: purple
+}
+[data-color="white"]::after {
+  background: white
+}
+
+.tool-option {
+  padding: 5px;
+  flex-basis: 75px;
+  flex-grow: 1;
+}
+
+.chat-display {
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.drawing-options {
+  width: 15%;
+  min-height: 100%;
+  position: absolute;
+  left: 80%;
+}
+
+.chat-form {
+  position: absolute;
+  height: 50px;
+  bottom: -50px;
 }
