@@ -42,7 +42,7 @@ li {
   width: 50%;
   display: flex;
   align-items: center;
-  position: relative;
+
 }
 
 
@@ -117,6 +117,22 @@ li {
   padding: 5px;
   flex-basis: 75px;
   flex-grow: 1;
+  position: relative;
+}
+
+.tool-option.current::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border: solid 10px green;
+  box-sizing: border-box;
+  z-index: -1;
+  /* background: white; */
+  /* opacity: .5; */
 }
 
 .chat-display {
@@ -124,6 +140,36 @@ li {
   height: 100%;
   position: absolute;
   left: 0;
+  overflow: hidden;
+}
+
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#chat.drawing .chat-messages {
+  display: none;
+}
+
+.chat-messages li {
+  line-height: 2rem;
+  background: lightgrey;
+  align-self: flex-start;
+}
+
+.chat-messages li.myMsg {
+  align-self: flex-end;
+}
+
+#start-btn:not(:checked) ~ .pen-tools {
+  display: none;
 }
 
 .drawing-options {

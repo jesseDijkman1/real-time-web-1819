@@ -27,10 +27,8 @@ io.on("connection", socket => {
   // First add the socket to the socket list to keep track of them all
   socketsList[socket.id] = {};
 
-
-
   socket.on("new msg", val => {
-    io.sockets.emit("display msg", val)
+    io.sockets.emit("display msg", val, socket.id)
   })
 
   socket.on("get all drawings", () => {

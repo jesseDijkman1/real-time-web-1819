@@ -7,11 +7,14 @@ const msgForm = document.querySelector(".chat-form form");
 const chatContainer = document.querySelector(".chat-display .chat-messages");
 
 // Display the new msg('s)
-socket.on("display msg", msg => {
+socket.on("display msg", (msg, msgId) => {
   const newMsgEl = document.createElement("LI");
   const newMsgTxt = document.createTextNode(msg);
   newMsgEl.appendChild(newMsgTxt);
 
+  if (socket.id == msgId) {
+    newMsgEl.classList.add("myMsg")
+  }
   chatContainer.appendChild(newMsgEl)
 })
 
