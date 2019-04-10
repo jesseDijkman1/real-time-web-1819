@@ -79,6 +79,7 @@ html {
   background: black;
   display: flex;
   flex-direction: column;
+  padding: 2rem;
 }
 .chat-form {
   display: flex;
@@ -107,8 +108,21 @@ html {
   color: white;
 }
 
+.chat-msg ~ .chat-msg {
+  margin-bottom: 1rem;
+}
+
+.chat-msg.my-msg ~ .chat-msg.my-msg {
+  margin-bottom: .5rem;
+}
+
 .chat-msg.lobby {
   align-self: center;
+}
+
+.chat-msg.lobby .msg-date,
+.chat-msg.lobby .msg-content {
+  float: left;
 }
 
 .chat-msg.player {
@@ -125,6 +139,30 @@ html {
 .chat-msg.my-msg:not(.lobby) {
   align-self: flex-end;
 }
+.chat-msg.player.my-msg .msg-author {
+  display: none;
+}
+
+.chat-msg.player:not(.my-msg) .msg-date::after,
+.chat-msg.lobby .msg-date::after {
+  content: "-";
+  display: inline-block;
+  margin: 0 .5rem;
+}
+
+.chat-msg.player.my-msg .msg-date::before {
+  content: "-";
+  display: inline-block;
+  margin: 0 .5rem;
+}
+
+.chat-msg.player.my-msg .msg-date,
+.chat-msg.player.my-msg .msg-content {
+  /* display: inline-block;
+  width: 100%;
+  text-align: right; */
+  float: right;
+}
 .chat-msg .msg-date {}
 .chat-msg .msg-author {}
-.chat-msg .msg-content {}
+.chat-msg.player .msg-content {}

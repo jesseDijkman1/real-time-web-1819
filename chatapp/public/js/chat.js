@@ -22,6 +22,15 @@ class msg {
     const dateEl = document.createElement("SMALL");
     const msgEl = document.createElement("P");
 
+
+
+    dateEl.appendChild(document.createTextNode(this.date));
+    dateEl.classList.add("msg-date")
+    msgEl.appendChild(document.createTextNode(this.msg));
+    msgEl.classList.add("msg-content")
+
+    msgContainer.appendChild(dateEl);
+
     if (this.author) {
       const authorEl = document.createElement("SMALL")
 
@@ -32,12 +41,6 @@ class msg {
       msgContainer.appendChild(authorEl);
     }
 
-    dateEl.appendChild(document.createTextNode(this.date));
-    dateEl.classList.add("msg-date")
-    msgEl.appendChild(document.createTextNode(this.msg));
-    msgEl.classList.add("msg-content")
-
-    msgContainer.appendChild(dateEl);
     msgContainer.appendChild(msgEl);
 
     if (socket.id === this.id) {
@@ -90,10 +93,14 @@ socket.on("add new player", (name, data) => {
 
       messagesContainer.appendChild(msgElement);
     }
-
-
   })
 });
+
+socket.on("new player join", data => {
+  const msgElement = new msg(data).lobby();
+
+  messagesContainer.appendChild(msgElement);
+})
 
 socket.on("player left", data => {
 

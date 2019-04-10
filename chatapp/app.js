@@ -113,7 +113,8 @@ io.on("connection", socket => {
   data.id = socket.id
 
   messagesData.push(data);
-  io.emit("add new player", socketsList[socket.id].name, messagesData)
+  socket.emit("add new player", socketsList[socket.id].name, messagesData)
+  socket.broadcast.emit("new player joined", socketsList[socket.id].name, data)
 
   socket.on("update player name", newName => {
     socketsList[socket.id].name = newName;
