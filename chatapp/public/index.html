@@ -11,7 +11,27 @@
   <div class="page-container">
     <main id="game">
       <canvas></canvas>
-      <footer class="game-options"></footer>
+      <footer class="game-options">
+          <form class="options">
+            <input data-name="color" class="visuallyhidden" name="pen-color" type="radio" id="white" value="white">
+            <label for="white">White</label>
+            <input data-name="color" class="visuallyhidden" name="pen-color" type="radio" id="black" value="black">
+            <label for="black">Black</label>
+            <input data-name="color" class="visuallyhidden" name="pen-color" type="radio" id="blue" value="blue">
+            <label for="blue">Blue</label>
+            <input data-name="color" class="visuallyhidden" name="pen-color" type="radio" id="red" value="red">
+            <label for="red">Red</label>
+            <input data-name="color" class="visuallyhidden" name="pen-color" type="radio" id="green" value="green">
+            <label for="green">Green</label>
+          </form>
+          <form class="options">
+            <input data-name="size" type="range" min="5" max="50" step="5">
+          </form>
+          <form action="options">
+            <button data-name="controls" type="button" value="undo">Undo</button>
+            <button data-name="controls" type="button" value="clear">Clear canvas</button>
+          </form>
+      </footer>
     </main>
 
     <aside id="chat">

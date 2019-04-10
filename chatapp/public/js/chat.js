@@ -96,7 +96,7 @@ socket.on("add new player", (name, data) => {
   })
 });
 
-socket.on("new player join", data => {
+socket.on("new player joined", data => {
   const msgElement = new msg(data).lobby();
 
   messagesContainer.appendChild(msgElement);

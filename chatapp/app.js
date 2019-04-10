@@ -89,9 +89,12 @@ app.get("/", (req, res) => {
 app.use(express.static("public"))
 
 const socketsList = {};
+const points = [];
 const messagesData = [];
 const availableIds = [];
 const playersLimit = 5;
+
+let bunch;
 
 for (let i = 1; i <= playersLimit; i++) {
   availableIds.push(i);
@@ -111,25 +114,52 @@ io.on("connection", socket => {
   addSocket(socket)
   const data = new chatMessage(socketsList[socket.id].name, "~0 joined the lobby");
   data.id = socket.id
-
+  console.log(points)
   messagesData.push(data);
+
   socket.emit("add new player", socketsList[socket.id].name, messagesData)
-  socket.broadcast.emit("new player joined", socketsList[socket.id].name, data)
+
+  socket.emit("add new player 2", points)
+
+  socket.broadcast.emit("new player joined", data)
 
   socket.on("update player name", newName => {
     socketsList[socket.id].name = newName;
   })
 
   socket.on("new message", msg => {
-    // const m = {msg: msg, author: socketsList[socket.id].name};
-    console.log(msg)
     const data = new chatMessage(socketsList[socket.id].name, msg, true)
-    console.log(data)
     data.id = socket.id
+
     messagesData.push(data);
 
     io.emit("display messages", data)
   });
+
+  socket.on("started drawing", data => {
+    console.log("drawing  ")
+    // points.push(data);
+    bunch = [];
+    bunch.push(data);
+
+    socket.broadcast.emit("init drawing", data)
+  })
+
+  socket.on("save point data", data => {
+    // points.push(data);
+    bunch.push(data)
+    socket.broadcast.emit("show drawing", data)
+  })
+
+  socket.on("ended drawing", () => {
+    console.log(bunch.length)
+    points.push(bunch)
+    bunch = null;
+
+
+    // console.log(points.flat())
+    // console.log(points)
+  })
 
   socket.on("disconnect", () => {
     const data = new chatMessage(socketsList[socket.id].name, "~0 left the lobby")

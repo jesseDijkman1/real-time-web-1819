@@ -12,6 +12,12 @@ html {
   font-family: system-ui, Arial, sans-serif;
 }
 
+.visuallyhidden {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
 .page-container {
   height: 100%;
   max-width: 80rem;
@@ -33,7 +39,16 @@ html {
   border: solid 1px red;
 }
 .game canvas {}
-.game-options {}
+.game-options label:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+.game-options input[type="radio"] + label {
+  margin-right: .5rem;
+}
+.game-options input[type="radio"]:checked + label {
+  text-decoration: underline;
+}
 
 #chat {
   min-height: 400px;
