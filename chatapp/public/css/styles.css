@@ -74,11 +74,15 @@ html {
 
 .chat-messages {
   height: calc(100% - 5rem);
+  max-height: 35rem;
+  overflow-y: scroll;
   background: black;
+  display: flex;
+  flex-direction: column;
 }
 .chat-form {
   display: flex;
-  height: 2rem;
+  height: 3rem;
   font-size: 1.2rem;
 }
 .chat-form input[type="text"] {
@@ -87,6 +91,10 @@ html {
   width: 80%;
   outline: none;
 }
+
+.chat-form input[type="text"]:invalid {
+  border: solid 3px red;
+}
 .chat-form button[type="submit"] {
   width: 20%;
   background: blue;
@@ -94,3 +102,29 @@ html {
   font-weight: bold;
   font-size: inherit;
 }
+
+.chat-msg {
+  color: white;
+}
+
+.chat-msg.lobby {
+  align-self: center;
+}
+
+.chat-msg.player {
+  color: yellow;
+}
+.chat-msg.player.my-msg {
+  color: green;
+}
+
+.chat-msg.game {
+  color: red;
+}
+
+.chat-msg.my-msg:not(.lobby) {
+  align-self: flex-end;
+}
+.chat-msg .msg-date {}
+.chat-msg .msg-author {}
+.chat-msg .msg-content {}

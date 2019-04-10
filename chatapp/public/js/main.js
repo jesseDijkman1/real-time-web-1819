@@ -5,7 +5,7 @@ const socket = io();
 export default socket;
 
 // Present a pop-up when the user tries to refresh or leave
-window.onbeforeunload = () => "Are you sure?"
+// window.onbeforeunload = () => "Are you sure?"
 
 
 
